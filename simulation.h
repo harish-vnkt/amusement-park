@@ -6,3 +6,4 @@ void drawHorse();
 void drawMerryGoRound();
 void drawCar();
 void drawWheel();
+void drawPlane();
