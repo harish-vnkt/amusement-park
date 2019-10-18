@@ -5,6 +5,8 @@
 GLint width = 1100;
 GLint height = 650;
 
+GLfloat rotateMerryGoRound = 0.0f;
+
 int main(int argc, char** argv) {
 
     glutInit(&argc, argv);
@@ -18,6 +20,7 @@ int main(int argc, char** argv) {
 
     glutReshapeFunc(reshape);
     glutDisplayFunc(render);
+    glutIdleFunc(idle);
     glutKeyboardFunc(keyboard);
     init();
 
@@ -62,6 +65,16 @@ void reshape(GLint w, GLint h) {
 		0.0f, 1.0f, 0.0f);  
 
     glMatrixMode(GL_MODELVIEW);
+
+}
+
+void idle() {
+
+    rotateMerryGoRound += 1;
+    
+    if (rotateMerryGoRound==360.0) {
+        rotateMerryGoRound = 0.0f;
+    }
 
 }
 
