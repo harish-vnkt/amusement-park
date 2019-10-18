@@ -6,6 +6,7 @@ GLint width = 1100;
 GLint height = 650;
 
 GLfloat rotateMerryGoRound = 0.0f;
+GLfloat speedMerryGoRound = 0.75f;
 
 int main(int argc, char** argv) {
 
@@ -60,7 +61,7 @@ void reshape(GLint w, GLint h) {
     glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(60, (float)w / (float)h, 1.0f, 120.0f);
-	gluLookAt(0.0f, 30.0f, 60.0f,
+	gluLookAt(0.0f, 0.0f, 60.0f,
 		0.0f, 0.0f, 0.0f,   
 		0.0f, 1.0f, 0.0f);  
 
@@ -70,11 +71,13 @@ void reshape(GLint w, GLint h) {
 
 void idle() {
 
-    rotateMerryGoRound += 1;
+    rotateMerryGoRound += speedMerryGoRound;
     
     if (rotateMerryGoRound==360.0) {
         rotateMerryGoRound = 0.0f;
     }
+
+    glutPostRedisplay();
 
 }
 
@@ -98,6 +101,7 @@ void render() {
         glPushMatrix();
 
             glTranslatef(0.0f, 0.0f, -25.0f);
+            glRotatef(rotateMerryGoRound, 0.0f, -1.0f, 0.0f);
             glScalef(0.7f, 0.7f, 0.7f);
             drawMerryGoRound();
 
@@ -119,7 +123,7 @@ void render() {
 
             glPushMatrix();
 
-                glTranslatef(-15.0f, 10.f, 0.0f);
+                glTranslatef(-15.0f, 10.0f, 0.0f);
                 glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
                 drawHorse();
 
@@ -127,7 +131,7 @@ void render() {
 
             glPushMatrix();
 
-                glTranslatef(0.0f, 10.f, -15.0f);
+                glTranslatef(0.0f, 10.0f, -15.0f);
                 glRotatef(180.0f, 0.0f, 1.0f, 0.0f);
                 drawHorse();
 
