@@ -2,6 +2,23 @@
 #include <stdio.h>
 #include <GL/glut.h>
 
+void drawPlane() {
+
+    glColor3f(0.0f, 0.3f, 0.0f);
+
+    glBegin(GL_QUADS);
+    
+        glVertex3f(-50.0f, 0.0f, -50.0f);
+        glVertex3f(-50.0f, 0.0f, 50.0f);
+        glVertex3f(50.0f, 0.0f, 50.0f);
+        glVertex3f(50.0f, 0.0f, -50.0f);
+
+    glEnd();
+
+    glColor3f(1.0f, 1.0f, 1.0f);
+
+}
+
 void drawHorse() {
 
     glColor3f(0.5f, 0.35f, 0.05f);
@@ -458,6 +475,7 @@ void drawHorse() {
         glVertex3f(2.0f, -1.5f, -1.5f);
         
     glEnd();
-    
 
+    glColor3f(1.0f, 1.0f, 1.0f);
+    
 }
