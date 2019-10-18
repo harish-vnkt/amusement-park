@@ -19,6 +19,67 @@ void drawPlane() {
 
 }
 
+void drawMerryGoRound() {
+
+    GLUquadricObj *quadratic = gluNewQuadric();
+    
+    // Pole
+    glPushMatrix();
+
+        glTranslatef(0.0f, 1.0f, 0.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluCylinder(quadratic, 1.0f, 1.0f, 23.0f, 8, 8);
+
+    glPopMatrix();
+
+    // Lower platform
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glPushMatrix();
+
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluCylinder(quadratic, 20.0f, 20.0f, 1.0f, 12, 12);
+
+    glPopMatrix();
+
+    // Lower platform, top disk
+    glPushMatrix();
+
+        glTranslatef(0.0f, 1.0f, 0.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 20.0f, 12, 12);
+
+    glPopMatrix();
+
+    // Upper platform
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glPushMatrix();
+
+        glTranslatef(0.0f, 24.0f, 0.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluCylinder(quadratic, 20.0f, 20.0f, 1.0f, 12, 12);
+
+    glPopMatrix();
+
+    // Upper platform, top disk
+    glPushMatrix();
+
+        glTranslatef(0.0f, 25.0f, 0.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 20.0f, 12, 12);
+
+    glPopMatrix();
+
+    // Upper platform, bottom disk
+    glPushMatrix();
+
+        glTranslatef(0.0f, 24.0f, 0.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 20.0f, 12, 12);
+
+    glPopMatrix();
+
+}
+
 void drawHorse() {
 
     glColor3f(0.5f, 0.35f, 0.05f);
