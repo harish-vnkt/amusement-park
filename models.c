@@ -109,7 +109,6 @@ void drawHorse() {
 
     glEnd();
     
-    glPushMatrix();
     // Neck cube
     glBegin(GL_QUADS);
 
@@ -153,24 +152,11 @@ void drawHorse() {
         glVertex3f(-7.0f, 1.5f, 0.0f);
         glVertex3f(-4.0f, 2.5f, 1.5f);
         
-        // glColor3f(0.0f, 0.0f, 0.0f);
-        // glPushMatrix();
-        //     glTranslatef(-5.75f, -2.75f, 1.5f);
-        //     glutSolidSphere(0.25f, 10, 10);
-        // glPopMatrix();
-
         // Back face
         glVertex3f(-6.0f, 4.5f, -1.5f);
         glVertex3f(-7.0f, 1.5f, 0.0f);
         glVertex3f(-4.0f, 2.5f, -1.5f);
 
-        // glPushMatrix();
-        //     glTranslatef(-5.75f, -2.75f, -1.5f);
-        //     glutSolidSphere(0.25f, 10, 10);
-        // glPopMatrix();
-
-        // glColor3f(0.5f, 0.35f, 0.05f);
-        
         // Top face
         glVertex3f(-6.0f, 4.5f, 1.5f);
         glVertex3f(-6.0f, 4.5f, -1.5f);
@@ -182,6 +168,19 @@ void drawHorse() {
         glVertex3f(-7.0f, 1.5f, 0.0f);
 
     glEnd();
+
+    // Eyes
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glPushMatrix();
+        glTranslatef(-5.75f, 2.75f, 0.75f);
+        glutSolidSphere(0.5f, 10, 10);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(-5.75f, 2.75f, -0.75f);
+        glutSolidSphere(0.5f, 10, 10);
+    glPopMatrix();
+
+    glColor3f(0.5f, 0.35f, 0.05f);
 
     // Tail
     glBegin(GL_QUADS);
