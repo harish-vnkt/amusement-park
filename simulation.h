@@ -13,6 +13,7 @@ void drawPlane();
 
 // Boiler-plate functions
 void init();
+void idle();
 void render();
 void reshape(GLint, GLint);
 GLvoid keyboard(unsigned char, int, int);
