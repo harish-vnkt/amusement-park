@@ -83,460 +83,187 @@ void drawMerryGoRound() {
 void drawHorse() {
 
     glColor3f(0.5f, 0.35f, 0.05f);
-    // Body
-    glBegin(GL_QUADS);
-
-        // Front face
-        glVertex3f(-3.0f, 1.5f, 1.5f);
-        glVertex3f(-3.0f, -1.5f, 1.5f);
-        glVertex3f(3.0f, -1.5f, 1.5f);
-        glVertex3f(3.0f, 1.5f, 1.5f);
-
-        // Back face
-        glVertex3f(-3.0f, 1.5f, -1.5f);
-        glVertex3f(-3.0f, -1.5f, -1.5f);
-        glVertex3f(3.0f, -1.5f, -1.5f);
-        glVertex3f(3.0f, 1.5f, -1.5f);
-
-        // Top face
-        glVertex3f(-3.0f, 1.5f, 1.5f);
-        glVertex3f(3.0f, 1.5f, 1.5f);
-        glVertex3f(3.0f, 1.5f, -1.5f);
-        glVertex3f(-3.0f, 1.5f, -1.5f);
-
-        // Bottom face
-        glVertex3f(-3.0f, -1.5f, 1.5f);
-        glVertex3f(3.0f, -1.5f, 1.5f);
-        glVertex3f(3.0f, -1.5f, -1.5f);
-        glVertex3f(-3.0f, -1.5f, -1.5f);
-
-        // Left face
-        glVertex3f(-3.0f, 1.5f, 1.5f);
-        glVertex3f(-3.0f, -1.5f, 1.5f);
-        glVertex3f(-3.0f, -1.5f, -1.5f);
-        glVertex3f(-3.0f, 1.5f, -1.5f);
-
-        // Right face
-        glVertex3f(3.0f, 1.5f, 1.5f);
-        glVertex3f(3.0f, -1.5f, 1.5f);
-        glVertex3f(3.0f, -1.5f, -1.5f);
-        glVertex3f(3.0f, 1.5f, -1.5f);
-
-    glEnd();
-
-    // Neck triangle
-    glBegin(GL_QUADS);
-
-        glVertex3f(-1.0f, 1.5f, 1.5f);
-        glVertex3f(-1.0f, 1.5f, -1.5f);
-        glVertex3f(-1.0f, 3.5f, -1.5f);
-        glVertex3f(-1.0f, 3.5f, 1.5f);
-
-        glVertex3f(-1.0f, 3.5f, 1.5f);
-        glVertex3f(-1.0f, 3.5f, -1.5f);
-        glVertex3f(-3.0f, 1.5f, -1.5f);
-        glVertex3f(-3.0f, 1.5f, 1.5f);
-
-    glEnd();
-
-    // Neck triangles
-    glBegin(GL_TRIANGLES);
-
-        glVertex3f(-1.0f, 3.5f, 1.5f);
-        glVertex3f(-3.0f, 1.5f, 1.5f);
-        glVertex3f(-1.0f, 1.5f, 1.5f);
-
-        glVertex3f(-1.0f, 3.5f, -1.5f);
-        glVertex3f(-3.0f, 1.5f, -1.5f);
-        glVertex3f(-1.0f, 1.5f, -1.5f);
-
-    glEnd();
-
-    // Neck cuboid
-    glBegin(GL_QUADS);
-
-        // Front face
-        glVertex3f(-4.0f, 2.5f, 1.5f);
-        glVertex3f(-3.0f, 1.5f, 1.5f);
-        glVertex3f(-1.0f, 3.5f, 1.5f);
-        glVertex3f(-2.0f, 4.5f, 1.5f);
-
-        // Back face
-        glVertex3f(-4.0f, 2.5f, -1.5f);
-        glVertex3f(-3.0f, 1.5f, -1.5f);
-        glVertex3f(-1.0f, 3.5f, -1.5f);
-        glVertex3f(-2.0f, 4.5f, -1.5f);
-
-        // Top face
-        glVertex3f(-4.0f, 2.5f, 1.5f);
-        glVertex3f(-2.0f, 4.5f, 1.5f);
-        glVertex3f(-2.0f, 4.5f, -1.5f);
-        glVertex3f(-4.0f, 2.5f, -1.5f);
-
-        // Left face
-        glVertex3f(-4.0f, 2.5f, 1.5f);
-        glVertex3f(-4.0f, 2.5f, -1.5f);
-        glVertex3f(-3.0f, 1.5f, -1.5f);
-        glVertex3f(-3.0f, 1.5f, 1.5f);
-
-        // Right face
-        glVertex3f(-2.0f, 4.5f, 1.5f);
-        glVertex3f(-2.0f, 4.5f, -1.5f);
-        glVertex3f(-1.0f, 3.5f, -1.5f);
-        glVertex3f(-1.0f, 3.5f, 1.5f);
-
-    glEnd();
+    GLUquadricObj *quadratic = gluNewQuadric();
     
-    // Neck cube
-    glBegin(GL_QUADS);
+    // Body cylinder
+    glPushMatrix();
 
-        // Front face
-        glVertex3f(-4.0f, 2.5f, 1.5f);
-        glVertex3f(-2.0f, 4.5f, 1.5f);
-        glVertex3f(-4.0f, 6.5f, 1.5f);
-        glVertex3f(-6.0f, 4.5f, 1.5f);
+        glTranslatef(3.0f, 0.0f, 0.0f);
+        glRotatef(90.0f, 0.0f, -1.0f, 0.0f);
+        gluCylinder(quadratic, 1.5f, 1.5f, 6.0f, 8, 8);
 
-        // Back face
-        glVertex3f(-4.0f, 2.5f, -1.5f);
-        glVertex3f(-2.0f, 4.5f, -1.5f);
-        glVertex3f(-4.0f, 6.5f, -1.5f);
-        glVertex3f(-6.0f, 4.5f, -1.5f);
-        
-        // Top face
-        glVertex3f(-6.0f, 4.5f, 1.5f);
-        glVertex3f(-4.0f, 6.5f, 1.5f);
-        glVertex3f(-4.0f, 6.5f, -1.5f);
-        glVertex3f(-6.0f, 4.5f, -1.5f);
+    glPopMatrix();
 
-        // Left face
-        glVertex3f(-6.0f, 4.5f, -1.5f);
-        glVertex3f(-4.0f, 2.5f, -1.5f);
-        glVertex3f(-4.0f, 2.5f, 1.5f);
-        glVertex3f(-6.0f, 4.5f, 1.5f);
+    // Body disks
+    glPushMatrix();
 
-        // Right face
-        glVertex3f(-4.0f, 6.5f, -1.5f);
-        glVertex3f(-2.0f, 4.5f, -1.5f);
-        glVertex3f(-2.0f, 4.5f, 1.5f);
-        glVertex3f(-4.0f, 6.5f, 1.5f);
+        glTranslatef(-3.0f, 0.0f, 0.0f);
+        glRotatef(90.0f, 0.0f, -1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 1.5f, 8, 8);
 
-    glEnd();
+    glPopMatrix();
 
-    // Face
-    glBegin(GL_TRIANGLES);
+    glPushMatrix();
 
-        // Front face
-        glVertex3f(-6.0f, 4.5f, 1.5f);
-        glVertex3f(-7.0f, 1.5f, 0.0f);
-        glVertex3f(-4.0f, 2.5f, 1.5f);
-        
-        // Back face
-        glVertex3f(-6.0f, 4.5f, -1.5f);
-        glVertex3f(-7.0f, 1.5f, 0.0f);
-        glVertex3f(-4.0f, 2.5f, -1.5f);
+        glTranslatef(3.0f, 0.0f, 0.0f);
+        glRotatef(90.0f, 0.0f, -1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 1.5f, 8, 8);
 
-        // Top face
-        glVertex3f(-6.0f, 4.5f, 1.5f);
-        glVertex3f(-6.0f, 4.5f, -1.5f);
-        glVertex3f(-7.0f, 1.5f, 0.0f);
+    glPopMatrix();
+    
+    // Neck cylinder
+    glPushMatrix();
 
-        // Bottom face
-        glVertex3f(-4.0f, 2.5f, -1.5f);
-        glVertex3f(-4.0f, 2.5f, 1.5f);
-        glVertex3f(-7.0f, 1.5f, 0.0f);
+        glTranslatef(-2.5f, 2.0f, 0.0f);
+        glRotatef(45.0f, 0.0f, 0.0f, -1.0f);
+        glRotatef(90.0f, 0.0f, -1.0f, 0.0f);
+        gluCylinder(quadratic, 1.0f, 0.75f, 4.25f, 8, 8);
 
-    glEnd();
+    glPopMatrix();
+
+    // Neck disk
+    glPushMatrix();
+
+        glTranslatef(-2.5f, 2.0f, 0.0f);
+        glRotatef(45.0f, 0.0f, 0.0f, -1.0f);
+        glRotatef(90.0f, 0.0f, -1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 1.0f, 8, 8);
+
+    glPopMatrix();
+
+    // Face cone
+    glPushMatrix();
+
+        glTranslatef(-5.0f, 3.5f, 0.0f);
+        glRotatef(-45.0f, 0.0f, 0.0f, -1.0f);
+        glRotatef(90.0f, 0.0f, -1.0f, 0.0f);
+        glutSolidCone(1.5f, 3.0f, 8, 8);
+
+    glPopMatrix();
+
+    // Face disk
+    glPushMatrix();
+
+        glTranslatef(-5.0f, 3.5f, 0.0f);
+        glRotatef(-45.0f, 0.0f, 0.0f, -1.0f);
+        glRotatef(90.0f, 0.0f, -1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 1.5f, 8, 8);        
+
+    glPopMatrix();
 
     // Eyes
     glColor3f(0.0f, 0.0f, 0.0f);
     glPushMatrix();
+    
         glTranslatef(-5.75f, 2.75f, 0.75f);
         glutSolidSphere(0.5f, 10, 10);
+    
     glPopMatrix();
+    
     glPushMatrix();
+    
         glTranslatef(-5.75f, 2.75f, -0.75f);
         glutSolidSphere(0.5f, 10, 10);
+    
+    glPopMatrix();
+    glColor3f(0.5f, 0.35f, 0.05f);
+    
+    // Tail
+    glPushMatrix();
+
+        glTranslatef(2.5f, 2.0f, 0.0f);
+        glRotatef(45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+        gluCylinder(quadratic, 1.0f, 0.75f, 4.0f, 8, 8);
+
     glPopMatrix();
 
-    glColor3f(0.5f, 0.35f, 0.05f);
+    // Tail disk
+    glPushMatrix();
 
-    // Tail
-    glBegin(GL_QUADS);
+        glTranslatef(2.5f, 2.0f, 0.0f);
+        glRotatef(45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 1.0f, 8, 8);
 
-        // Tail triangle
-        glVertex3f(2.0f, 1.5f, -0.5f);
-        glVertex3f(2.0f, 2.5f, -0.5f);
-        glVertex3f(2.0f, 2.5f, 0.5f);
-        glVertex3f(2.0f, 1.5f, 0.5f);
-
-        glVertex3f(2.0f, 2.5f, 0.5f);
-        glVertex3f(2.0f, 2.5f, -0.5f);
-        glVertex3f(3.0f, 1.5f, -0.5f);
-        glVertex3f(3.0f, 1.5f, 0.5f);
-
-        // Tail cuboid
-
-        // Front face
-        glVertex3f(2.0f, 2.5f, 0.5f);
-        glVertex3f(4.0f, 4.5f, 0.5f);
-        glVertex3f(5.0f, 3.5f, 0.5f);
-        glVertex3f(3.0f, 1.5f, 0.5f);
-
-        // Back face
-        glVertex3f(2.0f, 2.5f, -0.5f);
-        glVertex3f(4.0f, 4.5f, -0.5f);
-        glVertex3f(5.0f, 3.5f, -0.5f);
-        glVertex3f(3.0f, 1.5f, -0.5f);
-
-        // Top face
-        glVertex3f(2.0f, 2.5f, 0.5f);
-        glVertex3f(4.0f, 4.5f, 0.5f);
-        glVertex3f(4.0f, 4.5f, -0.5f);
-        glVertex3f(2.0f, 2.5f, -0.5f);
-
-        // Bottom face
-        glVertex3f(3.0f, 1.5f, 0.5f);
-        glVertex3f(3.0f, 1.5f, -0.5f);
-        glVertex3f(5.0f, 3.5f, -0.5f);
-        glVertex3f(5.0f, 3.5f, 0.5f);
-
-        // Right face
-        glVertex3f(4.0f, 4.5f, 0.5f);
-        glVertex3f(4.0f, 4.5f, -0.5f);
-        glVertex3f(5.0f, 3.5f, -0.5f);
-        glVertex3f(5.0f, 3.5f, 0.5f);
-
-    glEnd();
-
-    // Tail triangles
-    glBegin(GL_TRIANGLES);
+    glPopMatrix();
     
-        glVertex3f(-3.0f, 1.5f, 1.5f);
-        glVertex3f(2.0f, 2.5f, 1.5f);
-        glVertex3f(3.0f, 1.5f, 0.5f);
-
-        glVertex3f(2.0f, 1.5f, -0.5f);
-        glVertex3f(2.0f, 2.5f, -0.5f);
-        glVertex3f(3.0f, 1.5f, -0.5f);
-        
-    glEnd();
-
     // Front legs
-    glBegin(GL_QUADS);
+    glPushMatrix();
 
-        // Leg triangle
-        glVertex3f(-2.0f, -1.5f, 0.5f);
-        glVertex3f(-2.0f, -2.5f, 0.5f);
-        glVertex3f(-2.0f, -2.5f, 1.5f);
-        glVertex3f(-2.0f, -1.5f, 1.5f);
-        
-        glVertex3f(-2.0f, -1.5f, -0.5f);
-        glVertex3f(-2.0f, -2.5f, -0.5f);
-        glVertex3f(-2.0f, -2.5f, -1.5f);
-        glVertex3f(-2.0f, -1.5f, -1.5f);
+        glTranslatef(-3.0f, -1.5f, 0.75f);
+        glRotatef(45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+        gluCylinder(quadratic, 0.5f, 0.5f, 3.0f, 8, 8);
 
-        glVertex3f(-3.0f, -1.5f, 0.5f);
-        glVertex3f(-2.0f, -2.5f, 0.5f);
-        glVertex3f(-2.0f, -2.5f, 1.5f);
-        glVertex3f(-3.0f, -1.5f, 1.5f);
+    glPopMatrix();
 
-        glVertex3f(-3.0f, -1.5f, -0.5f);
-        glVertex3f(-2.0f, -2.5f, -0.5f);
-        glVertex3f(-2.0f, -2.5f, -1.5f);
-        glVertex3f(-3.0f, -1.5f, -1.5f);
+    glPushMatrix();
 
-        // Leg cuboid
-        // Front face
-        glVertex3f(-3.0f, -1.5f, 1.5f);
-        glVertex3f(-5.0f, -3.5f, 1.5f);
-        glVertex3f(-4.0f, -4.5f, 1.5f);
-        glVertex3f(-2.0f, -2.5f, 1.5f);
+        glTranslatef(-3.0f, -1.5f, -0.75f);
+        glRotatef(45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+        gluCylinder(quadratic, 0.5f, 0.5f, 3.0f, 8, 8);
 
-        // Back face
-        glVertex3f(-3.0f, -1.5f, 0.5f);
-        glVertex3f(-5.0f, -3.5f, 0.5f);
-        glVertex3f(-4.0f, -4.5f, 0.5f);
-        glVertex3f(-2.0f, -2.5f, 0.5f);
+    glPopMatrix();
 
-        // Top face
-        glVertex3f(-5.0f, -3.5f, 1.5f);
-        glVertex3f(-3.0f, -1.5f, 1.5f);
-        glVertex3f(-3.0f, -1.5f, 0.5f);
-        glVertex3f(-5.0f, -3.5f, 0.5f);
+    // Front disks
+    glPushMatrix();
 
-        // Bottom face
-        glVertex3f(-4.0f, -4.5f, 1.5f);
-        glVertex3f(-2.0f, -2.5f, 1.5f);
-        glVertex3f(-2.0f, -2.5f, 0.5f);
-        glVertex3f(-4.0f, -4.5f, 0.5f);
+        glTranslatef(-3.0f, -1.5f, 0.75f);
+        glRotatef(45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 0.5f, 8, 8);
 
-        // Left face
-        glVertex3f(-4.0f, -4.5f, 1.5f);
-        glVertex3f(-5.0f, -3.5f, 1.5f);
-        glVertex3f(-5.0f, -3.5f, 0.5f);
-        glVertex3f(-4.0f, -4.5f, 1.5f);
+    glPopMatrix();
 
-        // Front face
-        glVertex3f(-3.0f, -1.5f, -0.5f);
-        glVertex3f(-5.0f, -3.5f, -0.5f);
-        glVertex3f(-4.0f, -4.5f, -0.5f);
-        glVertex3f(-2.0f, -2.5f, -0.5f);
+    glPushMatrix();
 
-        // Back face
-        glVertex3f(-3.0f, -1.5f, -1.5f);
-        glVertex3f(-5.0f, -3.5f, -1.5f);
-        glVertex3f(-4.0f, -4.5f, -1.5f);
-        glVertex3f(-2.0f, -2.5f, -1.5f);
+        glTranslatef(-3.0f, -1.5f, -0.75f);
+        glRotatef(45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 0.5f, 8, 8);
 
-        // Top face
-        glVertex3f(-5.0f, -3.5f, -0.5f);
-        glVertex3f(-3.0f, -1.5f, -0.5f);
-        glVertex3f(-3.0f, -1.5f, -1.5f);
-        glVertex3f(-5.0f, -3.5f, -1.5f);
-
-        // Bottom face
-        glVertex3f(-4.0f, -4.5f, -0.5f);
-        glVertex3f(-2.0f, -2.5f, -0.5f);
-        glVertex3f(-2.0f, -2.5f, -1.5f);
-        glVertex3f(-4.0f, -4.5f, -1.5f);
-
-        // Left face
-        glVertex3f(-4.0f, -4.5f, -0.5f);
-        glVertex3f(-5.0f, -3.5f, -0.5f);
-        glVertex3f(-5.0f, -3.5f, -1.5f);
-        glVertex3f(-4.0f, -4.5f, -1.5f);
-
-    glEnd();
-
-    // Leg triangles
-    glBegin(GL_TRIANGLES);
-    
-        glVertex3f(-3.0f, -1.5f, 1.5f);
-        glVertex3f(-2.0f, -2.5f, 1.5f);
-        glVertex3f(-2.0f, -1.5f, 1.5f);
-
-        glVertex3f(-3.0f, -1.5f, 0.5f);
-        glVertex3f(-2.0f, -2.5f, 0.5f);
-        glVertex3f(-2.0f, -1.5f, 0.5f);
-
-        glVertex3f(-3.0f, -1.5f, -0.5f);
-        glVertex3f(-2.0f, -2.5f, -0.5f);
-        glVertex3f(-2.0f, -1.5f, -0.5f);
-
-        glVertex3f(-3.0f, -1.5f, -1.5f);
-        glVertex3f(-2.0f, -2.5f, -1.5f);
-        glVertex3f(-2.0f, -1.5f, -1.5f);
-        
-    glEnd();
+    glPopMatrix();
 
     // Back legs
-    glBegin(GL_QUADS);
+    glPushMatrix();
 
-        // Leg triangle
-        glVertex3f(2.0f, -1.5f, 0.5f);
-        glVertex3f(2.0f, -2.5f, 0.5f);
-        glVertex3f(2.0f, -2.5f, 1.5f);
-        glVertex3f(2.0f, -1.5f, 1.5f);
-        
-        glVertex3f(2.0f, -1.5f, -0.5f);
-        glVertex3f(2.0f, -2.5f, -0.5f);
-        glVertex3f(2.0f, -2.5f, -1.5f);
-        glVertex3f(2.0f, -1.5f, -1.5f);
+        glTranslatef(3.0f, -1.5f, 0.75f);
+        glRotatef(-45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+        gluCylinder(quadratic, 0.5f, 0.5f, 3.0f, 8, 8);
 
-        glVertex3f(3.0f, -1.5f, 0.5f);
-        glVertex3f(2.0f, -2.5f, 0.5f);
-        glVertex3f(2.0f, -2.5f, 1.5f);
-        glVertex3f(3.0f, -1.5f, 1.5f);
+    glPopMatrix();
 
-        glVertex3f(3.0f, -1.5f, -0.5f);
-        glVertex3f(2.0f, -2.5f, -0.5f);
-        glVertex3f(2.0f, -2.5f, -1.5f);
-        glVertex3f(3.0f, -1.5f, -1.5f);
+    glPushMatrix();
 
-        // Leg cuboid
-        // Front face
-        glVertex3f(3.0f, -1.5f, 1.5f);
-        glVertex3f(5.0f, -3.5f, 1.5f);
-        glVertex3f(4.0f, -4.5f, 1.5f);
-        glVertex3f(2.0f, -2.5f, 1.5f);
+        glTranslatef(3.0f, -1.5f, -0.75f);
+        glRotatef(-45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+        gluCylinder(quadratic, 0.5f, 0.5f, 3.0f, 8, 8);
 
-        // Back face
-        glVertex3f(3.0f, -1.5f, 0.5f);
-        glVertex3f(5.0f, -3.5f, 0.5f);
-        glVertex3f(4.0f, -4.5f, 0.5f);
-        glVertex3f(2.0f, -2.5f, 0.5f);
+    glPopMatrix();
 
-        // Top face
-        glVertex3f(5.0f, -3.5f, 1.5f);
-        glVertex3f(3.0f, -1.5f, 1.5f);
-        glVertex3f(3.0f, -1.5f, 0.5f);
-        glVertex3f(5.0f, -3.5f, 0.5f);
+    // Back disks
+    glPushMatrix();
 
-        // Bottom face
-        glVertex3f(4.0f, -4.5f, 1.5f);
-        glVertex3f(2.0f, -2.5f, 1.5f);
-        glVertex3f(2.0f, -2.5f, 0.5f);
-        glVertex3f(4.0f, -4.5f, 0.5f);
+        glTranslatef(3.0f, -1.5f, 0.75f);
+        glRotatef(-45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 0.5f, 8, 8);
 
-        // Left face
-        glVertex3f(4.0f, -4.5f, 1.5f);
-        glVertex3f(5.0f, -3.5f, 1.5f);
-        glVertex3f(5.0f, -3.5f, 0.5f);
-        glVertex3f(4.0f, -4.5f, 1.5f);
+    glPopMatrix();
 
-        // Front face
-        glVertex3f(3.0f, -1.5f, -0.5f);
-        glVertex3f(5.0f, -3.5f, -0.5f);
-        glVertex3f(4.0f, -4.5f, -0.5f);
-        glVertex3f(2.0f, -2.5f, -0.5f);
+    glPushMatrix();
 
-        // Back face
-        glVertex3f(3.0f, -1.5f, -1.5f);
-        glVertex3f(5.0f, -3.5f, -1.5f);
-        glVertex3f(4.0f, -4.5f, -1.5f);
-        glVertex3f(2.0f, -2.5f, -1.5f);
+        glTranslatef(3.0f, -1.5f, -0.75f);
+        glRotatef(-45.0f, 0.0f, 0.0f, 1.0f);
+        glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
+        gluDisk(quadratic, 0.0f, 0.5f, 8, 8);
 
-        // Top face
-        glVertex3f(5.0f, -3.5f, -0.5f);
-        glVertex3f(3.0f, -1.5f, -0.5f);
-        glVertex3f(3.0f, -1.5f, -1.5f);
-        glVertex3f(5.0f, -3.5f, -1.5f);
-
-        // Bottom face
-        glVertex3f(4.0f, -4.5f, -0.5f);
-        glVertex3f(2.0f, -2.5f, -0.5f);
-        glVertex3f(2.0f, -2.5f, -1.5f);
-        glVertex3f(4.0f, -4.5f, -1.5f);
-
-        // Left face
-        glVertex3f(4.0f, -4.5f, -0.5f);
-        glVertex3f(5.0f, -3.5f, -0.5f);
-        glVertex3f(5.0f, -3.5f, -1.5f);
-        glVertex3f(4.0f, -4.5f, -1.5f);
-
-    glEnd();
-
-    // Leg triangles
-    glBegin(GL_TRIANGLES);
-
-        glVertex3f(3.0f, -1.5f, 1.5f);
-        glVertex3f(2.0f, -2.5f, 1.5f);
-        glVertex3f(2.0f, -1.5f, 1.5f);
-
-        glVertex3f(3.0f, -1.5f, 0.5f);
-        glVertex3f(2.0f, -2.5f, 0.5f);
-        glVertex3f(2.0f, -1.5f, 0.5f);
-
-        glVertex3f(3.0f, -1.5f, -0.5f);
-        glVertex3f(2.0f, -2.5f, -0.5f);
-        glVertex3f(2.0f, -1.5f, -0.5f);
-
-        glVertex3f(3.0f, -1.5f, -1.5f);
-        glVertex3f(2.0f, -2.5f, -1.5f);
-        glVertex3f(2.0f, -1.5f, -1.5f);
-        
-    glEnd();
-
+    glPopMatrix();
+    
     glColor3f(1.0f, 1.0f, 1.0f);
     
 }
