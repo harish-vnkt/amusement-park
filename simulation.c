@@ -29,6 +29,11 @@ void init() {
 
     glEnable(GL_DEPTH_TEST);
 
+    glEnable(GL_LINE_SMOOTH);
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST); // Antialias lines
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 }
 
 void reshape(GLint w, GLint h) {
