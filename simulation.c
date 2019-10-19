@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize(width, height);
     glutCreateWindow("Amusement Park");
 
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // sky blue
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // sky blue
 
     glutReshapeFunc(reshape);
     glutDisplayFunc(render);
@@ -47,31 +47,17 @@ void init() {
     horseY3 = 90.0;
     horseY4 = 135.0;
 
-    GLfloat direction1[] = {25.0f, 25.0f, 0.0f, 1.0f};
-    GLfloat unitDirection1[] = {-0.66666, -0.33333, -0.66666};
-    GLfloat direction2[] = {-25.0f, 25.0f, 0.0f, 1.0f};
-    GLfloat unitDirection2[] = {0.66666, -0.33333, -0.66666};
-    GLfloat white[] = {0.7f, 0.7f, 0.7f, 1.0f};
+    GLfloat directionalLightPosition[] = {1.0f, 1.0f, 1.0f, 0.0f};
+    GLfloat white[] = {1.0f, 1.0f, 1.0f, 1.0f};
     GLfloat ambient[] = {0.3f, 0.3f, 0.3f, 0.7f};
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, white);
-	glLightfv(GL_LIGHT0, GL_POSITION, direction1);
-    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, unitDirection1);
-    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0f);
-
-    glLightfv(GL_LIGHT1, GL_AMBIENT, ambient);
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, white);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, white);
-	glLightfv(GL_LIGHT1, GL_POSITION, direction2);
-    glLightfv(GL_LIGHT1, GL_POSITION, direction2);
-    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, unitDirection2);
-    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
+	glLightfv(GL_LIGHT0, GL_POSITION, directionalLightPosition);
 
 	glEnable(GL_LIGHTING);                
 	glEnable(GL_LIGHT0);
-    glEnable(GL_LIGHT1);
     
     glColorMaterial(GL_FRONT, GL_DIFFUSE);
 
@@ -135,8 +121,10 @@ void render() {
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    skyPlane();
+    
     glPushMatrix();
-        
+
         drawPlane();
 
         glPushMatrix();
