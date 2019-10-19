@@ -32,6 +32,39 @@ void drawMerryGoRound() {
 
     glPopMatrix();
 
+    // Pillars
+    glPushMatrix();
+
+        glTranslatef(18.0f, 1.0f, 0.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluCylinder(quadratic, 0.75f, 0.75f, 23.0f, 8, 8);
+
+    glPopMatrix();
+
+    glPushMatrix();
+
+        glTranslatef(0.0f, 1.0f, 18.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluCylinder(quadratic, 0.75f, 0.75f, 23.0f, 8, 8);
+
+    glPopMatrix();
+
+    glPushMatrix();
+
+        glTranslatef(-18.0f, 1.0f, 0.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluCylinder(quadratic, 0.75f, 0.75f, 23.0f, 8, 8);
+
+    glPopMatrix();
+
+    glPushMatrix();
+
+        glTranslatef(0.0f, 1.0f, -18.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        gluCylinder(quadratic, 0.75f, 0.75f, 23.0f, 8, 8);
+
+    glPopMatrix();
+
     // Lower platform
     glColor3f(1.0f, 0.0f, 0.0f);
     glPushMatrix();
