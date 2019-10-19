@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize(width, height);
     glutCreateWindow("Amusement Park");
 
-    glClearColor( 47.055, 55.289, 86.785, 1.0 ); // sky blue
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // sky blue
 
     glutReshapeFunc(reshape);
     glutDisplayFunc(render);
@@ -47,15 +47,31 @@ void init() {
     horseY3 = 90.0;
     horseY4 = 135.0;
 
-    GLfloat direction[] = {1.0f, 1.0f, 1.0f, 0.0f};
-    GLfloat white[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat direction1[] = {25.0f, 25.0f, 0.0f, 1.0f};
+    GLfloat unitDirection1[] = {-0.66666, -0.33333, -0.66666};
+    GLfloat direction2[] = {-25.0f, 25.0f, 0.0f, 1.0f};
+    GLfloat unitDirection2[] = {0.66666, -0.33333, -0.66666};
+    GLfloat white[] = {0.7f, 0.7f, 0.7f, 1.0f};
+    GLfloat ambient[] = {0.3f, 0.3f, 0.3f, 0.7f};
 
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, white);
-	glLightfv(GL_LIGHT0, GL_POSITION, direction);
+	glLightfv(GL_LIGHT0, GL_POSITION, direction1);
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, unitDirection1);
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0f);
+
+    glLightfv(GL_LIGHT1, GL_AMBIENT, ambient);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, white);
+	glLightfv(GL_LIGHT1, GL_POSITION, direction2);
+    glLightfv(GL_LIGHT1, GL_POSITION, direction2);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, unitDirection2);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 45.0f);
 
 	glEnable(GL_LIGHTING);                
 	glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
     
     glColorMaterial(GL_FRONT, GL_DIFFUSE);
 
@@ -132,7 +148,7 @@ void render() {
 
             glPushMatrix();
 
-                glTranslatef(15.0f, 
+                glTranslatef(18.25f, 
                     minHorseY + (sin(horseY1 * (PI/180.0)) * rangeHorseY), 
                         0.0f);
                 glRotatef(90.0f, 0.0f, 1.0f, 0.0f);
@@ -144,7 +160,7 @@ void render() {
 
                 glTranslatef(0.0f, 
                     minHorseY + (sin(horseY2 * (PI/180.0)) * rangeHorseY), 
-                        15.0f);
+                        18.25f);
                 glRotatef(0.0f, 0.0f, 1.0f, 0.0f);
                 drawHorse();
 
@@ -152,7 +168,7 @@ void render() {
 
             glPushMatrix();
 
-                glTranslatef(-15.0f, 
+                glTranslatef(-18.25f, 
                     minHorseY + (sin(horseY3 * (PI/180.0)) * rangeHorseY), 
                         0.0f);
                 glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
@@ -164,7 +180,7 @@ void render() {
 
                 glTranslatef(0.0f, 
                     minHorseY + (sin(horseY4 * (PI/180.0)) * rangeHorseY), 
-                        -15.0f);
+                        -18.25f);
                 glRotatef(180.0f, 0.0f, 1.0f, 0.0f);
                 drawHorse();
 
