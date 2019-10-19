@@ -3,15 +3,14 @@
 #include <GL/glut.h>
 
 void skyPlane() {
-
-    glColor3f(47.055f, 55.289f, 86.785f);
-
+    
+    glColor3f(0.0f, 0.0f, 1.0f);
     glBegin(GL_QUADS);
-
-        glVertex3f(-100.0f, 100.0f, -50.0f);
-        glVertex3f(-100.0f, -100.0f, -50.0f);
-        glVertex3f(100.0f, -100.0f, -50.0f);
-        glVertex3f(100.0f, 100.0f, -50.0f);
+    
+        glVertex3f(-200.0f, 500.0f, -50.0f);
+        glVertex3f(-200.0f, -500.0f, -50.0f);
+        glVertex3f(200.0f, -500.0f, -50.0f);
+        glVertex3f(200.0f, 500.0f, -50.0f);
 
     glEnd();
 
@@ -31,14 +30,13 @@ void drawPlane() {
 
     glEnd();
 
-    glColor3f(1.0f, 1.0f, 1.0f);
-
 }
 
 void drawMerryGoRound() {
 
     GLUquadricObj *quadratic = gluNewQuadric();
     
+    glColor3f(1.0f, 1.0f, 1.0f);
     // Pole
     glPushMatrix();
 
