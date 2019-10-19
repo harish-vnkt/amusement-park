@@ -2,6 +2,22 @@
 #include <stdio.h>
 #include <GL/glut.h>
 
+void skyPlane() {
+
+    glColor3f(47.055f, 55.289f, 86.785f);
+
+    glBegin(GL_QUADS);
+
+        glVertex3f(-100.0f, 100.0f, -50.0f);
+        glVertex3f(-100.0f, -100.0f, -50.0f);
+        glVertex3f(100.0f, -100.0f, -50.0f);
+        glVertex3f(100.0f, 100.0f, -50.0f);
+
+    glEnd();
+
+}
+
+
 void drawPlane() {
 
     glColor3f(0.0f, 0.3f, 0.0f);

@@ -5,6 +5,7 @@
 #endif
 
 // Drawing functions
+void skyPlane();
 void drawHorse();
 void drawMerryGoRound();
 void drawCar();
