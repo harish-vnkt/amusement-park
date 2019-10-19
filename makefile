@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall
-LDFLAGS = -lglut -lGLU -lGL
+LDFLAGS = -lglut -lGLU -lGL -lm
 OBJFILES = models.o simulation.o
 TARGET = Simulation
 
