@@ -2,9 +2,23 @@
 #include <stdio.h>
 #include <GL/glut.h>
 
+GLfloat specular[] = {0.5f, 0.5f, 0.5f};
+GLfloat shininess = 0.5f;
+GLfloat red[] = {1.0f, 0.0f, 0.0f};
+GLfloat blue[] = {0.0f, 0.0f, 1.0f};
+GLfloat green[] = {0.0f, 1.0f, 0.0f};
+GLfloat dark_green[] = {0.0f, 0.3f, 0.0f};
+GLfloat white[] = {1.0f, 1.0f, 1.0f};
+GLfloat gray[] = {0.5f, 0.5f, 0.5f};
+GLfloat brown[] = {0.7f, 0.35f, 0.05f};
+GLfloat black[] = {0.0f, 0.0f, 0.0f};
+
 void skyPlane() {
     
-    glColor3f(0.0f, 0.0f, 1.0f);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blue);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 0.0f);
+    
     glBegin(GL_QUADS);
     
         glVertex3f(-200.0f, 500.0f, -50.0f);
@@ -18,7 +32,9 @@ void skyPlane() {
 
 void drawPlane() {
 
-    glColor3f(0.0f, 0.3f, 0.0f);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, dark_green);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 0.0f);
 
     glBegin(GL_QUADS);
     
@@ -35,7 +51,9 @@ void drawMerryGoRound() {
 
     GLUquadricObj *quadratic = gluNewQuadric();
     
-    glColor3f(1.0f, 1.0f, 1.0f);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, white);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
     // Pole
     glPushMatrix();
 
@@ -79,7 +97,9 @@ void drawMerryGoRound() {
     glPopMatrix();
 
     // Lower platform
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, red);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 0.2f);
     glPushMatrix();
 
         glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
@@ -97,7 +117,7 @@ void drawMerryGoRound() {
     glPopMatrix();
 
     // Upper platform
-    glColor3f(1.0f, 0.0f, 0.0f);
+    
     glPushMatrix();
 
         glTranslatef(0.0f, 24.0f, 0.0f);
@@ -128,8 +148,12 @@ void drawMerryGoRound() {
 
 void drawHorse() {
 
-    glColor3f(0.5f, 0.35f, 0.05f);
+    
     GLUquadricObj *quadratic = gluNewQuadric();
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, brown);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
     
     // Body cylinder
     glPushMatrix();
@@ -198,7 +222,6 @@ void drawHorse() {
     glPopMatrix();
 
     // Eyes
-    glColor3f(0.0f, 0.0f, 0.0f);
     glPushMatrix();
     
         glTranslatef(-5.75f, 2.75f, 0.75f);
@@ -212,7 +235,6 @@ void drawHorse() {
         glutSolidSphere(0.5f, 10, 10);
     
     glPopMatrix();
-    glColor3f(0.5f, 0.35f, 0.05f);
     
     // Tail
     glPushMatrix();
@@ -310,14 +332,15 @@ void drawHorse() {
 
     glPopMatrix();
     
-    glColor3f(1.0f, 1.0f, 1.0f);
-    
 }
 
 void drawWheel() {
 
     GLUquadricObj *quadratic = gluNewQuadric();
     
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, gray);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
     // Disks
     glPushMatrix();
 
@@ -345,14 +368,16 @@ void drawWheel() {
         glPopMatrix();
     
     }
-
 }
 
 void drawTrain() {
 
     GLUquadricObj *quadratic = gluNewQuadric();
 
-    glColor3f(0.0f, 1.0f, 0.0f);    
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, green);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
+
     glPushMatrix();
 
         glTranslatef(-15.0f, 0.0f, 0.0f);
@@ -360,8 +385,11 @@ void drawTrain() {
         gluCylinder(quadratic, 3.0f, 3.0f, 10.0f, 8, 8);
 
     glPopMatrix();
+
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, gray);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
     
-    glColor3f(1.0f, 1.0f, 1.0f);
     glPushMatrix();
 
         glTranslatef(-5.0f, 0.0f, 0.0f);
@@ -370,7 +398,10 @@ void drawTrain() {
 
     glPopMatrix();
 
-    glColor3f(0.0f, 0.0f, 1.0f);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blue);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
+
     glPushMatrix();
 
         glTranslatef(5.0f, 0.0f, 0.0f);
@@ -379,7 +410,10 @@ void drawTrain() {
 
     glPopMatrix();
 
-    glColor3f(1.0f, 1.0f, 1.0f); 
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, gray);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
+    
     glPushMatrix();
 
         glTranslatef(15.0f, 0.0f, 0.0f);
@@ -388,7 +422,10 @@ void drawTrain() {
 
     glPopMatrix();
 
-    glColor3f(1.0f, 0.0f, 0.0f);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, red);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, black);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
+    
     glPushMatrix();
 
         glTranslatef(20.0f, 0.0f, 0.0f);
@@ -396,6 +433,6 @@ void drawTrain() {
         glutSolidTorus(3.0f, 5.0f, 6, 6);
 
     glPopMatrix();
-    glColor3f(1.0f, 1.0f, 1.0f); 
+    
 
 }
