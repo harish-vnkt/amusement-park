@@ -8,7 +8,7 @@
 void skyPlane();
 void drawHorse();
 void drawMerryGoRound();
-void drawCar();
+void drawTrain();
 void drawWheel();
 void drawPlane();
 
