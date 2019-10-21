@@ -65,17 +65,27 @@ void init() {
     horseY3 = 90.0;
     horseY4 = 135.0;
 
+    glShadeModel(GL_SMOOTH);
+
     GLfloat directionalLightPosition[] = {1.0f, 1.0f, 1.0f, 0.0f};
-    GLfloat white[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    GLfloat white_weak[] = {0.7f, 0.7f, 0.7f, 1.0f};
+    GLfloat white_strong[] = {1.0f, 1.0f, 1.0f, 1.0f};
     GLfloat ambient[] = {0.3f, 0.3f, 0.3f, 0.7f};
+    GLfloat pointlightDirection[] = {0.0f, 25.0f, 30.0f, 1.0f};
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, white);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, white);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, white_weak);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, white_weak);
 	glLightfv(GL_LIGHT0, GL_POSITION, directionalLightPosition);
+
+    glLightfv(GL_LIGHT1, GL_AMBIENT, ambient);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, white_strong);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, white_strong);
+	glLightfv(GL_LIGHT1, GL_POSITION, pointlightDirection);
 
 	glEnable(GL_LIGHTING);                
 	glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
     
     glColorMaterial(GL_FRONT, GL_DIFFUSE);
 
