@@ -14,6 +14,13 @@ GLfloat speedMerryGoRound = 0.75f;
 GLfloat rotateHorse = 0.0f;
 GLfloat speedHorse = 2.0f;
 
+GLfloat speedWheel = 5.0f;
+GLfloat circumferenceWheel = 6.0 * PI;
+GLfloat distanceWheel = 0.0f;
+GLfloat rotateWheel = 0.0f;
+GLfloat trainInitPos = 75.0f;
+GLfloat trainFinalPos = 0.0f;
+
 GLfloat minHorseY = 5.0f;
 GLfloat maxHorseY = 17.0f;
 GLfloat rangeHorseY, horseY1, horseY2, horseY3, horseY4;
@@ -114,6 +121,13 @@ void idle() {
     if (horseY2>=180.0) horseY2 = 0.0f;
     if (horseY3>=180.0) horseY3 = 0.0f;
     if (horseY4>=180.0) horseY4 = 0.0f;
+
+    rotateWheel += speedWheel;
+    distanceWheel = (rotateWheel * circumferenceWheel)/360.0;
+    trainFinalPos = trainInitPos - distanceWheel;
+    if (trainFinalPos < -75.0) {
+        rotateWheel = 0.0f;
+    }
 
     glutPostRedisplay();
 
@@ -251,6 +265,110 @@ void render() {
                 drawHorse();
 
             glPopMatrix();
+
+        glPopMatrix();
+
+        glPushMatrix();
+
+            glTranslatef(trainFinalPos, 9.0f, 25.0f);
+            drawTrain();
+            
+            glPushMatrix();
+
+                glTranslatef(-25.0f, -6.0f, 1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(-25.0f, -6.0f, -1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(-15.0f, -6.0f, 1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(-15.0f, -6.0f, -1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(-5.0f, -6.0f, 1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(-5.0f, -6.0f, -1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(5.0f, -6.0f, 1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(5.0f, -6.0f, -1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(15.0f, -6.0f, 1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(15.0f, -6.0f, -1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(25.0f, -6.0f, 1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
+            glPushMatrix();
+
+                glTranslatef(25.0f, -6.0f, -1.5f);
+                glRotatef(rotateWheel, 0.0f, 0.0f, 1.0f);
+                drawWheel();
+
+            glPopMatrix();
+
 
         glPopMatrix();
 
