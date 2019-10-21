@@ -18,6 +18,17 @@ GLfloat minHorseY = 5.0f;
 GLfloat maxHorseY = 17.0f;
 GLfloat rangeHorseY, horseY1, horseY2, horseY3, horseY4;
 
+float pan = 0.0f;
+double pan1 = 0.0f;
+float zoom = 0.0f;
+float eyeX = 0.0f;
+float eyeZ = 60.0f;
+double hypotenuse = 0.0;
+double theta = 0.0;
+double amountX = 0.0;
+double amountZ = 0.0;
+double centreZ = 0.0;
+
 int main(int argc, char** argv) {
 
     glutInit(&argc, argv);
@@ -27,7 +38,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize(width, height);
     glutCreateWindow("Amusement Park");
 
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // sky blue
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     glutReshapeFunc(reshape);
     glutDisplayFunc(render);
@@ -114,16 +125,83 @@ GLvoid keyboard(unsigned char key, int x, int y) {
         case 27:
             exit(1);
             break;
+
+        // left rotate
+        case 65: // A
+	    case 97: // a
+		    pan -= 1.0f;
+            pan1 = pan - amountX;
+            hypotenuse = sqrt((eyeZ*eyeZ) + (pan1*pan1));
+		    printf("Pan = %f\n", pan);
+            break;
+
+        // right rotate
+        case 68: // D
+        case 100: // d
+            pan += 1.0f;
+            pan1 = pan - amountX;
+            hypotenuse = sqrt((eyeZ*eyeZ) + (pan1*pan1));
+            printf("Pan = %f\n", pan);
+            break;
+
+		// zoom-out
+        case 83: // S
+        case 115: // s
+            if (pan1 != 0.0f) theta = asin(pan1/hypotenuse);
+            else theta = 0.0;
+            zoom -= 1.0f;
+            amountZ = zoom * cos(theta);
+            amountX = zoom * sin(theta);
+            eyeZ -= amountZ;
+            eyeX += amountX;
+            centreZ -= amountZ;
+            break;
+
+		// zoom-in
+        case 87: // W
+        case 119: // w
+            if (pan1 != 0.0f) theta = asin(pan1/hypotenuse);
+            else theta = 0.0;
+            zoom += 1.0f;
+            amountZ = zoom * cos(theta);
+            amountX = zoom * sin(theta);
+            eyeZ -= amountZ;
+            eyeX += amountX;
+            centreZ -= amountZ;
+            break;
+
+        // reset
+        case 82: // R
+        case 114: // r
+            eyeX = 0.0f;
+            eyeZ = 60.0f;
+            pan = 0.0f;
+            zoom = 0.0f;
+            centreZ = 0.0f;
+            break;
+
     }
+
 }
 
 void render() {
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glViewport(0, 0, width, height);
+	
+    glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(60, (float)width / (float)height, 1.0f, 120.0f);
+    gluLookAt(eyeX, 30.0f, eyeZ,
+		pan + amountX, 0.0f, centreZ,   
+		0.0f, 1.0f, 0.0f);  
 
-    skyPlane();
+    glMatrixMode(GL_MODELVIEW);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glPushMatrix();
+
+        skyPlane();
 
         drawPlane();
 
