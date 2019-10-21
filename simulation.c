@@ -173,9 +173,9 @@ GLvoid keyboard(unsigned char key, int x, int y) {
             zoom -= 1.0f;
             amountZ = zoom * cos(theta);
             amountX = zoom * sin(theta);
-            eyeZ -= amountZ;
-            eyeX += amountX;
-            centreZ -= amountZ;
+            eyeZ += amountZ;
+            eyeX -= amountX;
+            centreZ += amountZ;
             break;
 
 		// zoom-in
