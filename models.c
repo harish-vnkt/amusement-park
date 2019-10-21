@@ -16,7 +16,6 @@ void skyPlane() {
 
 }
 
-
 void drawPlane() {
 
     glColor3f(0.0f, 0.3f, 0.0f);
@@ -313,4 +312,90 @@ void drawHorse() {
     
     glColor3f(1.0f, 1.0f, 1.0f);
     
+}
+
+void drawWheel() {
+
+    GLUquadricObj *quadratic = gluNewQuadric();
+    
+    // Disks
+    glPushMatrix();
+
+        glTranslatef(0.0f, 0.0f, 0.5f);
+        gluDisk(quadratic, 2.0f, 3.0f, 8, 8);
+    
+    glPopMatrix();
+
+    glPushMatrix();
+
+        glTranslatef(0.0f, 0.0f, -0.5f);
+        gluDisk(quadratic, 2.0f, 3.0f, 8, 8);
+    
+    glPopMatrix();
+
+    // Spokes
+    for (int i = 0; i < 8; i++) {
+        
+        glPushMatrix();
+            
+            glRotatef(i*45.0f, 0.0f, 0.0f, 1.0f);
+            glRotatef(90.0f, -1.0, 0.0f, 0.0f);
+            gluCylinder(quadratic, 0.5f, 0.5f, 2.0f, 8, 8);
+
+        glPopMatrix();
+    
+    }
+
+}
+
+void drawTrain() {
+
+    GLUquadricObj *quadratic = gluNewQuadric();
+
+    glColor3f(0.0f, 1.0f, 0.0f);    
+    glPushMatrix();
+
+        glTranslatef(-15.0f, 0.0f, 0.0f);
+        glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+        gluCylinder(quadratic, 3.0f, 3.0f, 10.0f, 8, 8);
+
+    glPopMatrix();
+    
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glPushMatrix();
+
+        glTranslatef(-5.0f, 0.0f, 0.0f);
+        glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+        gluCylinder(quadratic, 1.0f, 1.0f, 10.0f, 8, 8);
+
+    glPopMatrix();
+
+    glColor3f(0.0f, 0.0f, 1.0f);
+    glPushMatrix();
+
+        glTranslatef(5.0f, 0.0f, 0.0f);
+        glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+        glutSolidCone(3.0f, 10.0f, 8, 8);
+
+    glPopMatrix();
+
+    glColor3f(1.0f, 1.0f, 1.0f); 
+    glPushMatrix();
+
+        glTranslatef(15.0f, 0.0f, 0.0f);
+        glRotatef(-90.0f, 0.0f, 1.0f, 0.0f);
+        gluCylinder(quadratic, 1.0f, 1.0f, 10.0f, 8, 8);
+
+    glPopMatrix();
+
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glPushMatrix();
+
+        glTranslatef(20.0f, 0.0f, 0.0f);
+        glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+        glutSolidTorus(3.0f, 5.0f, 6, 6);
+
+    glPopMatrix();
+    glColor3f(1.0f, 1.0f, 1.0f); 
+
 }
