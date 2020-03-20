@@ -5,33 +5,34 @@
 
 #define PI 3.14159265
 
+// Window parameters
 GLint width = 1100;
 GLint height = 650;
 
-GLfloat rotateMerryGoRound = 0.0f;
-GLfloat speedMerryGoRound = 0.75f;
+GLfloat rotateMerryGoRound = 0.0f; // Angle of merry-go-round 
+GLfloat speedMerryGoRound = 0.05f; // Angle increment
 
-GLfloat rotateHorse = 0.0f;
-GLfloat speedHorse = 2.0f;
+GLfloat rotateHorse = 0.0f; // Position of horse
+GLfloat speedHorse = 0.2f; // Position increment
 
-GLfloat speedWheel = 5.0f;
+GLfloat speedWheel = 0.5f; // Speed of rotation
 GLfloat circumferenceWheel = 6.0 * PI;
-GLfloat distanceWheel = 0.0f;
-GLfloat rotateWheel = 0.0f;
-GLfloat trainInitPos = 75.0f;
+GLfloat distanceWheel = 0.0f; // Distance travelled for every angle of rotation
+GLfloat rotateWheel = 0.0f; // Angle of rotation
+GLfloat trainInitPos = 75.0f; // Where to start drawing train
 GLfloat trainFinalPos = 0.0f;
 
-GLfloat minHorseY = 5.0f;
-GLfloat maxHorseY = 17.0f;
+GLfloat minHorseY = 5.0f; // Minimum height for rotation of horse
+GLfloat maxHorseY = 17.0f; // Maximum height for rotation of horse
 GLfloat rangeHorseY, horseY1, horseY2, horseY3, horseY4;
 
-float pan = 0.0f;
+float pan = 0.0f; // Pan angle
 double pan1 = 0.0f;
-float zoom = 0.0f;
+float zoom = 0.0f; // Zoom value
 float eyeX = 0.0f;
 float eyeZ = 60.0f;
 double hypotenuse = 0.0;
-double theta = 0.0;
+double theta = 0.0; // Angle of pan
 double amountX = 0.0;
 double amountZ = 0.0;
 double centreZ = 0.0;
@@ -53,6 +54,8 @@ int main(int argc, char** argv) {
     glutKeyboardFunc(keyboard);
     init();
 
+    printf("W/w - Move forward\nS/s - Move backward\nA/a - Rotate left\nD/d - Rotate right\nR/r - Reset\nQ/q/Esc - Quit\n");
+
     glutMainLoop();
 
 }
@@ -73,11 +76,13 @@ void init() {
     GLfloat ambient[] = {0.3f, 0.3f, 0.3f, 0.7f};
     GLfloat pointlightDirection[] = {0.0f, 25.0f, 30.0f, 1.0f};
 
+    // Directional light
 	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, white_weak);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, white_weak);
 	glLightfv(GL_LIGHT0, GL_POSITION, directionalLightPosition);
 
+    // Positional light
     glLightfv(GL_LIGHT1, GL_AMBIENT, ambient);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, white_strong);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, white_strong);
@@ -104,8 +109,8 @@ void reshape(GLint w, GLint h) {
     glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(60, (float)w / (float)h, 1.0f, 120.0f);
-	gluLookAt(0.0f, 30.0f, 60.0f,
-		0.0f, 0.0f, 0.0f,   
+	gluLookAt(eyeX, 30.0f, eyeZ,
+		pan + amountX, 0.0f, centreZ,   
 		0.0f, 1.0f, 0.0f);  
 
     glMatrixMode(GL_MODELVIEW);
@@ -114,6 +119,7 @@ void reshape(GLint w, GLint h) {
 
 void idle() {
 
+    // Update values for rotation of merry-go-round and the horses
     rotateMerryGoRound += speedMerryGoRound;
     horseY1 += speedHorse;
     horseY2 += speedHorse;
@@ -129,6 +135,7 @@ void idle() {
     if (horseY3>=180.0) horseY3 = 0.0f;
     if (horseY4>=180.0) horseY4 = 0.0f;
 
+    // Rotation of wheel and movement of train
     rotateWheel += speedWheel;
     distanceWheel = (rotateWheel * circumferenceWheel)/360.0;
     trainFinalPos = trainInitPos - distanceWheel;
@@ -144,6 +151,8 @@ GLvoid keyboard(unsigned char key, int x, int y) {
 
     switch (key) {
         case 27:
+        case 81:
+        case 113:
             exit(1);
             break;
 
@@ -153,7 +162,6 @@ GLvoid keyboard(unsigned char key, int x, int y) {
 		    pan -= 1.0f;
             pan1 = pan - amountX;
             hypotenuse = sqrt((eyeZ*eyeZ) + (pan1*pan1));
-		    printf("Pan = %f\n", pan);
             break;
 
         // right rotate
@@ -162,7 +170,6 @@ GLvoid keyboard(unsigned char key, int x, int y) {
             pan += 1.0f;
             pan1 = pan - amountX;
             hypotenuse = sqrt((eyeZ*eyeZ) + (pan1*pan1));
-            printf("Pan = %f\n", pan);
             break;
 
 		// zoom-out
@@ -222,10 +229,13 @@ void render() {
     
     glPushMatrix();
 
+        // Sky
         skyPlane();
 
+        // Ground
         drawPlane();
 
+        // Merry-go-round
         glPushMatrix();
 
             glTranslatef(0.0f, 0.0f, -25.0f);
@@ -233,6 +243,7 @@ void render() {
             glScalef(0.7f, 0.7f, 0.7f);
             drawMerryGoRound();
 
+            // Horses
             glPushMatrix();
 
                 glTranslatef(18.25f, 
@@ -275,11 +286,13 @@ void render() {
 
         glPopMatrix();
 
+        // Train
         glPushMatrix();
 
             glTranslatef(trainFinalPos, 9.0f, 25.0f);
             drawTrain();
             
+            // Wheels
             glPushMatrix();
 
                 glTranslatef(-25.0f, -6.0f, 1.5f);
