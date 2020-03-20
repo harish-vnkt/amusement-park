@@ -5,3 +5,5 @@ This is a practice exercise for simulations in OpenGL. All code is written in C.
 * To build the code - ```make```
 * To run the simulation - ```./Simulation```
 * To remove generated files - ```make clean```
+
+![](sample.gif)
